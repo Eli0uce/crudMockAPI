@@ -1,4 +1,4 @@
-## Table of Contents
+## Sommaire
 
 1. [Objectif du projet](#objectifs-du-projet)
 2. [Technologies](#technologies)
