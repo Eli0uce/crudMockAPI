@@ -14,23 +14,20 @@ Créer un listing dynamique des employés d’une entreprise. Vous devez créer 
 
 ---
 
-A list of technologies used within the project:
+Voici la liste des technologies utilisées dans le projet:
 
-- [Technologie name](https://example.com): Version 12.3
-- [Technologie name](https://example.com): Version 2.34
-- [Library name](https://example.com): Version 1234
+- [MockAPI](https://mockapi.io/): Version 1.0.0
+- [Bootstrap](https://getbootstrap.com/): Version 5.3.0
+- [Font Awesome](https://example.com): Version 6.2.1
 
 ## Installation
 
 ---
 
-A little intro about the installation.
+Voilà comment installer le projet.
 
 ```
-$ git clone https://example.com
-$ cd ../path/to/the/file
-$ npm install
-$ npm start
+$ git clone https://github.com/Eli0uce/crudMockAPI.git
+Ouvrez le fichier index.html dans votre navigateur
+ou cliquez sur le lien suivant: https://eli0uce.github.io/crudMockAPI/
 ```
-
-Side information: To use the application in a special environment use `lorem ipsum` to start
