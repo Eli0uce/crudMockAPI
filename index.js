@@ -16,6 +16,10 @@ function loadTable() {
         trHTML += "<td>" + object["job_title"] + "</td>";
         trHTML += "<td>" + object["email"] + "</td>";
         trHTML +=
+          '<td><button type="button" class="btn btn-dark" title="Show" onclick="showUserBox(' +
+          object["id"] +
+          ')"><i class="fas fa-eye fa-inverse"></i></button></td>';
+        trHTML +=
           '<td><button type="button" class="btn btn-success" title="Edit" onclick="showUserEditBox(' +
           object["id"] +
           ')"><i class="fas fa-pencil fa-inverse"></i></button>';
@@ -72,6 +76,42 @@ function userCreate() {
       const objects = JSON.parse(this.responseText);
       Swal.fire({title: "Success", text: "Employé créé", icon: "success"});
       loadTable();
+    }
+  };
+}
+
+// OPEN SHOW MODAL //
+function showUserBox(id) {
+  console.log(id);
+  const xhttp = new XMLHttpRequest();
+  xhttp.open(
+    "GET",
+    "https://6057e432c3f49200173ad08d.mockapi.io/employees/" + id
+  );
+  xhttp.send();
+  xhttp.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
+      const objects = JSON.parse(this.responseText);
+      Swal.fire({
+        title: "Employé",
+        html:
+          '<input id="id" type="hidden" value="' +
+          objects.id +
+          '">' +
+          '<input id="name" class="swal2-input" placeholder="Prénom" value="' +
+          objects.name +
+          '" disabled="disabled">' +
+          '<input id="last_name" class="swal2-input" placeholder="Nom" value="' +
+          objects.last_name +
+          '" disabled="disabled">' +
+          '<input id="job_title" class="swal2-input" placeholder="Métier" value="' +
+          objects.job_title +
+          '" disabled="disabled">' +
+          '<input id="email" class="swal2-input" placeholder="Mail" value="' +
+          objects.email +
+          '" disabled="disabled">',
+          confirmButtonText: "Fermer",
+      });
     }
   };
 }
