@@ -1,4 +1,10 @@
-## Objectif du projet
+## Table of Contents
+
+1. [Objectif du projet](#objectifs-du-projet)
+2. [Technologies](#technologies)
+3. [Installation](#installation)
+
+### Objectif du projet
 
 ---
 
@@ -27,7 +33,10 @@ Voici la liste des technologies utilisées dans le projet:
 Voilà comment installer le projet.
 
 ```
-$ git clone https://github.com/Eli0uce/crudMockAPI.git
+git clone https://github.com/Eli0uce/crudMockAPI.git
+```
+
+```
 Ouvrez le fichier index.html dans votre navigateur
 ou cliquez sur le lien suivant: https://eli0uce.github.io/crudMockAPI/
 ```
