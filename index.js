@@ -1,5 +1,3 @@
-fetch("https://6057e432c3f49200173ad08d.mockapi.io/employees");
-
 // DISPLAY TABLE //
 function loadTable() {
   const xhttp = new XMLHttpRequest();
@@ -18,11 +16,11 @@ function loadTable() {
         trHTML += "<td>" + object["job_title"] + "</td>";
         trHTML += "<td>" + object["email"] + "</td>";
         trHTML +=
-          '<td><button type="button" class="btn btn-success" onclick="showUserEditBox(' +
+          '<td><button type="button" class="btn btn-success" title="Edit" onclick="showUserEditBox(' +
           object["id"] +
-          ')">Edit</button>';
+          ')"><i class="fas fa-pencil fa-inverse"></i></button>';
         trHTML +=
-          '<button type="button" class="btn btn-danger" onclick="userDelete(' +
+          '<button type="button" class="btn btn-danger" title="Delete" onclick="showUserDeleteBox(' +
           object["id"] +
           ')"><i class="fas fa-trash fa-inverse"></i></button></td>';
         trHTML += "</tr>";
@@ -90,29 +88,27 @@ function showUserEditBox(id) {
   xhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
       const objects = JSON.parse(this.responseText);
-      const employees = objects["employees"];
-      console.log(employees);
       Swal.fire({
         title: "Edit Employee",
         html:
           '<input id="id" type="hidden" value="' +
-          employees["id"] +
+          objects.id +
           '">' +
           '<input id="name" class="swal2-input" placeholder="Name" value="' +
-          employees["name"] +
+          objects.name +
           '">' +
           '<input id="last_name" class="swal2-input" placeholder="Last Name" value="' +
-          employees["last_name"] +
+          objects.last_name +
           '">' +
           '<input id="job_title" class="swal2-input" placeholder="Job Title" value="' +
-          employees["job_title"] +
+          objects.job_title +
           '">' +
           '<input id="email" class="swal2-input" placeholder="Email" value="' +
-          employees["email"] +
+          objects.email +
           '">',
         focusConfirm: false,
         preConfirm: () => {
-          userEdit();
+          userEdit(id);
         },
       });
     }
@@ -120,8 +116,7 @@ function showUserEditBox(id) {
 }
 
 // EDIT //
-function userEdit() {
-  const id = document.getElementById("id").value;
+function userEdit(id) {
   const name = document.getElementById("name").value;
   const last_name = document.getElementById("last_name").value;
   const job_title = document.getElementById("job_title").value;
@@ -130,7 +125,7 @@ function userEdit() {
   const xhttp = new XMLHttpRequest();
   xhttp.open(
     "PUT",
-    "https://6057e432c3f49200173ad08d.mockapi.io/employees" + id
+    "https://6057e432c3f49200173ad08d.mockapi.io/employees/" + id
   );
   xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
   xhttp.send(
@@ -151,10 +146,33 @@ function userEdit() {
   };
 }
 
+// OPEN DELETE MODAL //
+function showUserDeleteBox(id) {
+  console.log(id);
+  const xhttp = new XMLHttpRequest();
+  xhttp.open(
+    "GET",
+    "https://6057e432c3f49200173ad08d.mockapi.io/employees/" + id
+  );
+  xhttp.send();
+  xhttp.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
+      const objects = JSON.parse(this.responseText);
+      Swal.fire({
+        title: "Souhaitez-vous supprimer cet employé ?",
+        focusConfirm: false,
+        preConfirm: () => {
+          userDelete(id);
+        },
+      });
+    }
+  };
+}
+
 // DELETE //
 function userDelete(id) {
   const xhttp = new XMLHttpRequest();
-  xhttp.open("DELETE", "https://6057e432c3f49200173ad08d.mockapi.io/employees");
+  xhttp.open("DELETE", "https://6057e432c3f49200173ad08d.mockapi.io/employees/" + id);
   xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
   xhttp.send(
     JSON.stringify({
@@ -164,7 +182,6 @@ function userDelete(id) {
   xhttp.onreadystatechange = function () {
     if (this.readyState == 4) {
       const objects = JSON.parse(this.responseText);
-      Swal.fire(objects["message"]);
       loadTable();
     }
   };

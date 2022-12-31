@@ -15,18 +15,12 @@
     <title>CRUD mockAPI</title>
   </head>
   <body>
-    <nav class="navbar navbar-dark bg-mynav">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">My App</a>
-        </div>
-      </nav>
-  
-      <div class="container">
+      <div class="container mt-5">
         <div class="d-flex bd-highlight mb-3">
-          <div class="me-auto p-2 bd-highlight"><h2>Employees</div>
+          <div class="me-auto p-2 bd-highlight"><h2>Liste des Employées</div>
           <div class="p-2 bd-highlight">
-            <button type="button" class="btn btn-warning" onclick="document.location.reload(true)"><i class="fas fa-arrows-rotate fa-inverse"></i></button>
-            <button type="button" class="btn btn-primary" onclick="showUserCreateBox()">Create</button>
+            <button type="button" class="btn btn-warning" title="Refresh List" onclick="document.location.reload(true)"><i class="fas fa-arrows-rotate fa-inverse"></i></button>
+            <button type="button" class="btn btn-primary" title="New Employee" onclick="showUserCreateBox()"><i class="fa-sharp fa-solid fa-plus"></i></button>
           </div>
         </div>
         
@@ -35,11 +29,11 @@
             <thead>
               <tr>
                 <th scope="col">#</th>
-                <th scope="col">Name</th>
-                <th scope="col">Last Name</th>
-                <th scope="col">Job Title</th>
-                <th scope="col">Email</th>
-                <th scope="col">Action</th>
+                <th scope="col">Prénom</th>
+                <th scope="col">Nom</th>
+                <th scope="col">Métier</th>
+                <th scope="col">Mail</th>
+                <th scope="col">Actions</th>
               </tr>
             </thead>
             <tbody id="mytable">
