@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -15,17 +15,21 @@
     <title>CRUD mockAPI</title>
   </head>
   <body>
+    <!-- Header -->
       <div class="container mt-5">
         <div class="d-flex bd-highlight mb-3">
-          <div class="me-auto p-2 bd-highlight"><h2>Liste des Employées</div>
+          <div class="me-auto p-2 bd-highlight"><h2>Liste des Employés</div>
           <div class="p-2 bd-highlight">
+            <!-- Buttons Refresh/New -->
             <button type="button" class="btn btn-warning" title="Refresh List" onclick="document.location.reload(true)"><i class="fas fa-arrows-rotate fa-inverse"></i></button>
             <button type="button" class="btn btn-primary" title="New Employee" onclick="showUserCreateBox()"><i class="fa-sharp fa-solid fa-plus"></i></button>
           </div>
         </div>
         
+        <!-- Table -->
         <div class="table-responsive">
           <table class="table">
+            <!-- Table Header -->
             <thead>
               <tr>
                 <th scope="col">#</th>
@@ -36,15 +40,17 @@
                 <th scope="col">Actions</th>
               </tr>
             </thead>
+            <!-- Table Body -->
             <tbody id="mytable">
               <tr>
-                <th scope="row" colspan="5">Loading...</th>
+                <th scope="row" colspan="5">Chargement...</th>
               </tr>
             </tbody>
           </table>
         </div>
       </div>
   
+      <!-- Scripts / Link JS -->
       <script src="index.js"></script>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"

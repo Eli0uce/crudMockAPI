@@ -35,13 +35,13 @@ loadTable();
 // OPEN CREATE MODAL //
 function showUserCreateBox() {
   Swal.fire({
-    title: "Create User",
+    title: "Nouvel Employé",
     html:
       '<input id="id" type="hidden">' +
-      '<input id="name" class="swal2-input" placeholder="Name">' +
-      '<input id="last_name" class="swal2-input" placeholder="Last Name">' +
-      '<input id="job_title" class="swal2-input" placeholder="Job Title">' +
-      '<input id="email" class="swal2-input" placeholder="Email">',
+      '<input id="name" class="swal2-input" placeholder="Prénom">' +
+      '<input id="last_name" class="swal2-input" placeholder="Nom">' +
+      '<input id="job_title" class="swal2-input" placeholder="Métier">' +
+      '<input id="email" class="swal2-input" placeholder="Mail">',
     focusConfirm: false,
     preConfirm: () => {
       userCreate();
@@ -70,7 +70,7 @@ function userCreate() {
   xhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
       const objects = JSON.parse(this.responseText);
-      Swal.fire(objects["message"]);
+      Swal.fire({title: "Success", text: "Employé créé", icon: "success"});
       loadTable();
     }
   };
@@ -89,21 +89,21 @@ function showUserEditBox(id) {
     if (this.readyState == 4 && this.status == 200) {
       const objects = JSON.parse(this.responseText);
       Swal.fire({
-        title: "Edit Employee",
+        title: "Modifier l'Employé",
         html:
           '<input id="id" type="hidden" value="' +
           objects.id +
           '">' +
-          '<input id="name" class="swal2-input" placeholder="Name" value="' +
+          '<input id="name" class="swal2-input" placeholder="Prénom" value="' +
           objects.name +
           '">' +
-          '<input id="last_name" class="swal2-input" placeholder="Last Name" value="' +
+          '<input id="last_name" class="swal2-input" placeholder="Nom" value="' +
           objects.last_name +
           '">' +
-          '<input id="job_title" class="swal2-input" placeholder="Job Title" value="' +
+          '<input id="job_title" class="swal2-input" placeholder="Métier" value="' +
           objects.job_title +
           '">' +
-          '<input id="email" class="swal2-input" placeholder="Email" value="' +
+          '<input id="email" class="swal2-input" placeholder="Mail" value="' +
           objects.email +
           '">',
         focusConfirm: false,
@@ -140,7 +140,7 @@ function userEdit(id) {
   xhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
       const objects = JSON.parse(this.responseText);
-      Swal.fire(objects["message"]);
+      Swal.fire({title: "Success", text: "Employé modifié", icon: "success"});
       loadTable();
     }
   };
@@ -182,6 +182,7 @@ function userDelete(id) {
   xhttp.onreadystatechange = function () {
     if (this.readyState == 4) {
       const objects = JSON.parse(this.responseText);
+      Swal.fire({title: "Success", text: "Employé supprimé", icon: "success"});
       loadTable();
     }
   };
